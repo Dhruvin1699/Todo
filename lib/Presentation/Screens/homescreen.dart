@@ -125,6 +125,7 @@ class _TodoAppHomeScreenState extends State<TodoAppHomeScreen> {
 
       ),
      appBar: AppBar(
+       elevation: 0,
          backgroundColor: Color(0xFF0277BD),
         titleSpacing: 0,
         leading: Padding(
@@ -226,7 +227,7 @@ class _TodoAppHomeScreenState extends State<TodoAppHomeScreen> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF0277BD),
+         color: Color(0xFF0277BD),
         child: Container(
           height: 60,
           margin: EdgeInsets.symmetric(horizontal: 0),
@@ -261,7 +262,7 @@ class _TodoAppHomeScreenState extends State<TodoAppHomeScreen> {
         ),
       ),
       body: Container(
-         color:Color(0xFF01579B),
+         color:Color(	0xFFFAF9F6),
         child: Column(
 
           children: <Widget>[
@@ -368,7 +369,7 @@ class _TodoAppHomeScreenState extends State<TodoAppHomeScreen> {
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.transparent),
                         borderRadius: BorderRadius.circular(8.0),
-                        color: Color(0xFF288D1)
+                        color: Colors.white
 
                       ),
                       child: Column(
@@ -379,18 +380,18 @@ class _TodoAppHomeScreenState extends State<TodoAppHomeScreen> {
                             children: [
                               Text(
                                 task.task,
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black,fontFamily: 'Poppins'),
                               ),
                               Text(
                                 task.date,
-                                style: TextStyle(fontSize: 14, color: Colors.white),
+                                style: TextStyle(fontSize: 14, color: Colors.blueGrey,fontFamily: 'Poppins'),
                               ),
                             ],
                           ),
                           SizedBox(height: 10),
                           Text(
                             task.selectedItem,
-                            style: TextStyle(fontSize: 16, color: Colors.white70),
+                            style: TextStyle(fontSize: 16, color: Colors.green,),
                           ),
                         ],
                       ),
@@ -406,31 +407,7 @@ class _TodoAppHomeScreenState extends State<TodoAppHomeScreen> {
     ),
 
 
-            // Container(
-            //   height: 60,
-            //   decoration: BoxDecoration(
-            //     border: Border.all(color: Colors.grey), // Border line color
-            //     borderRadius: BorderRadius.circular(8),
-            //   ),
-            //   margin: EdgeInsets.all(16),
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: TextField(
-            //       controller: _textFieldController,
-            //
-            //       decoration: InputDecoration(
-            //         hintText: 'Enter your text',hintStyle: TextStyle(fontSize: 10,color: Colors.white), // Hint text
-            //         enabledBorder: UnderlineInputBorder(
-            //           borderSide: BorderSide(color: Colors.white), // Manually set the underline color to white
-            //         ),
-            //         focusedBorder: UnderlineInputBorder(
-            //           borderSide: BorderSide(color: Colors
-            //               .white), // Underline decoration without boxes
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // )
+
           ],
         ),
       ),

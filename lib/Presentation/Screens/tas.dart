@@ -137,8 +137,7 @@ class _TaskState extends State<Task> {
 
   @override
   Widget build(BuildContext context) {
-    bool showSaveButton = isEditing; // Show save button only when editing an existing task
-    bool showFloatingButton = !isEditing;
+
 
     return Scaffold(
       floatingActionButton: widget.isEdit
@@ -153,42 +152,54 @@ class _TaskState extends State<Task> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            // Handle back button press
+            Navigator.pop(context);
           },
         ),
         title: Text(
           _screenTitle,
           style: TextStyle(color: Colors.white),
         ),
-        actions: <Widget>[widget.isEdit?
 
-            ElevatedButton(
-              onPressed: _onSaveButtonPressed,
-              child: Text('Save', style: TextStyle(color: Colors.black)),
-              style: ElevatedButton.styleFrom(primary: Colors.transparent,elevation: 0),
-            ):SizedBox.shrink(),
+        actions: <Widget>[
+          widget.isEdit
+              ? GestureDetector(
+            onTap: _onSaveButtonPressed, // Handle save action
+            child: Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: Image.asset(
+                'images/icons8-save-button-64.png', // Image asset path
+                width: 35, // Set image width
+                height: 54, // Set image height
+                color: Colors.white, // Set image color
+              ),
+            ),
+          )
+              : SizedBox.shrink(),
         ],
       ),
         body: Container(
-          color:Color(0xFF01579B),
+          height: double.maxFinite,
+          width: double.infinity,
+          color:Color(	0xFFFAF9F6),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 Row(
                   children: [
                     Text('What Is To be Done?',style: TextStyle(
-                      color: Colors.white
+                      color: Colors.black, fontFamily: 'Poppins',
                     ),),
                   ],
                 ),
                 TextField(
                   controller: _taskController,
+                  style: TextStyle(color: Colors.blueGrey),
                   decoration: InputDecoration(
                     hintText: 'Enter task',
                     hintStyle: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 12
+                      color: Colors.blueGrey,
+                      fontSize: 12, fontFamily: 'Poppins',
 
                     ),
                     border: UnderlineInputBorder(
@@ -199,7 +210,7 @@ class _TaskState extends State<Task> {
                 SizedBox(height: 20), // Add some space between widgets
                 Row(
                   children: [
-                    Text('Due Date',style: TextStyle(color: Colors.white),),
+                    Text('Due Date',style: TextStyle(color: Colors.black, fontFamily: 'Poppins',),),
                   ],
                 ),
                 GestureDetector(
@@ -214,7 +225,7 @@ class _TaskState extends State<Task> {
 
                     if (pickedDate != null) {
                       // Handle picked date and format it
-                      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                      String formattedDate = DateFormat('MM-dd-yyyy').format(pickedDate);
                       setState(() {
                         _dateController.text = formattedDate;
                       });
@@ -223,15 +234,16 @@ class _TaskState extends State<Task> {
                   child: AbsorbPointer(
                     child: TextField(
                       controller: _dateController,
+                      style: TextStyle(color: Colors.blueGrey),
                       decoration: InputDecoration(
                         hintText: 'Pick a date',
                         hintStyle: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 12
+                            color: Colors.blueGrey,
+                            fontSize: 12, fontFamily: 'Poppins',
 
                         ),
                         border: UnderlineInputBorder(),
-                        suffixIcon: Icon(Icons.calendar_today,color: Colors.white70,),
+                        suffixIcon: Icon(Icons.calendar_today,color: Colors.blueGrey,),
                       ),
                     ),
                   ),
@@ -240,7 +252,7 @@ class _TaskState extends State<Task> {
 
                 Row(
                   children: [
-                    Text('Add to List',style: TextStyle(color: Colors.white),),
+                    Text('Add to List',style: TextStyle(color: Colors.black, fontFamily: 'Poppins',),),
                   ],
                 ),
                 SizedBox(height: 15,),
@@ -306,9 +318,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
           },
           child: Row(
             children: [
-              Text(widget.selectedItem,style: TextStyle(color: Colors.white),),
-              SizedBox(width: 300,),
-              Icon(Icons.arrow_drop_down,color: Colors.white,),
+              Text(widget.selectedItem,style: TextStyle(color: Colors.blueGrey),),
+              SizedBox(width: 5,),
+              Icon(Icons.arrow_drop_down,color: Colors.blueGrey,),
             ],
           ),
         ),
@@ -318,7 +330,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           onTap: () {
             _showAddItemDialog(context);
           },
-          child: Icon(Icons.add,color: Colors.white,),
+          child: Icon(Icons.add,color: Colors.blueGrey,),
         ),
       ],
     );
@@ -342,11 +354,12 @@ class _CustomDropdownState extends State<CustomDropdown> {
     final List<PopupMenuEntry<String>> popupItems = widget.items.map((
         String item) {
       return PopupMenuItem<String>(
+
          value: item,
         child: Padding(
           padding: EdgeInsets.only(left: 16.0),
           // Add left padding to create a gap between icon and text
-          child: Text(item),
+          child: Text(item,style: TextStyle(color: Colors.blueGrey),),
         ),
       );
     }).toList();
@@ -368,22 +381,23 @@ class _CustomDropdownState extends State<CustomDropdown> {
       builder: (BuildContext context) {
         return AlertDialog(
 
-          title: Text('Add New Item',style: TextStyle(    color:Color(0xFF01579B),),),
+          title: Text('Add New Item',style: TextStyle(    color:Color(0xFF01579B), fontFamily: 'Poppins',),),
           content: TextField(
             controller: _addItemController,
+
             decoration: InputDecoration(
               hintText: 'Enter new item',
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel',style: TextStyle(    color:Color(0xFF01579B),),),
+              child: Text('Cancel',style: TextStyle(    color:Color(0xFF01579B), fontFamily: 'Poppins',),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Add',style: TextStyle(    color:Color(0xFF01579B),),),
+              child: Text('Add',style: TextStyle(    color:Color(0xFF01579B), fontFamily: 'Poppins',),),
               onPressed: () async {
                 String newItem = _addItemController.text;
                 if (newItem.isNotEmpty) {

@@ -27,19 +27,19 @@ class _TaskListScreenState extends State<TaskListScreen> {
         ),
       ),
       body: Container(
-        color:Color(0xFF01579B),
+       color:Color(	0xFFFAF9F6),
         child: ListView.builder(
           itemCount: widget.tasks.length,
           itemBuilder: (context, index) {
             TaskModel task = widget.tasks[index];
             return ListTile(
-              title: Text(task.task,style: TextStyle(color: Colors.white),),
-              subtitle: Text(task.date,style: TextStyle(color: Colors.white60),),
+              title: Text(task.task,style: TextStyle(color: Colors.black,  fontFamily: 'Poppins',),),
+              subtitle: Text(task.date,style: TextStyle(color: Colors.green),),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.edit,color: Colors.white60,),
+                    icon: Icon(Icons.edit,color: Colors.blueGrey,),
                     onPressed: () {
                       // Navigate to Task screen in edit mode
                       Navigator.push(
@@ -51,7 +51,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     },
                   ),
                   IconButton(
-                    icon: Icon(Icons.delete,color: Colors.white60),
+                    icon: Icon(Icons.delete,color: Colors.blueGrey),
                     onPressed: () {
                       // Handle delete functionality here
                     },
