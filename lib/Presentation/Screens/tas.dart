@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:todoappdemo/Presentation/Screens/homescreen.dart';
-import 'package:todoappdemo/databse.dart';
+
+
+import '../../databse.dart';
 
 
 
@@ -74,7 +75,9 @@ class _TaskState extends State<Task> {
           date: date,
           selectedItem: _selectedItem,
         );
+
         await DatabaseHelper.instance.updateTask(updatedTask);
+
       } else {
         // If task is null, insert a new task
         await DatabaseHelper.instance.insertTask(task, date, _selectedItem);
@@ -84,7 +87,13 @@ class _TaskState extends State<Task> {
       widget.onItemAdded(_selectedItem);
 
       // Navigate back to the home screen
-      Navigator.pop(context,_selectedItem);
+
+        // ... (your existing code)
+
+        // Navigate back to the previous screen and pass the updated item
+         Navigator.pop(context, _selectedItem);
+
+
     } else {
       print('Task or date is empty. Task not saved.');
     }
@@ -166,11 +175,10 @@ class _TaskState extends State<Task> {
             onTap: _onSaveButtonPressed, // Handle save action
             child: Padding(
               padding: const EdgeInsets.all(13.0),
-              child: Image.asset(
-                'images/icons8-save-button-64.png', // Image asset path
-                width: 35, // Set image width
-                height: 54, // Set image height
-                color: Colors.white, // Set image color
+              child: Icon(
+                Icons.save, // Use the save icon
+                size: 35, // Set icon size
+                color: Colors.white, // Set icon color
               ),
             ),
           )

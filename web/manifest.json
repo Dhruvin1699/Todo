@@ -1,6 +1,6 @@
 {
-    "name": "todoappdemo",
-    "short_name": "todoappdemo",
+    "name": "todo1",
+    "short_name": "todo1",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

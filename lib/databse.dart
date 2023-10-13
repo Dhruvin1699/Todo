@@ -135,8 +135,27 @@ class DatabaseHelper {
       whereArgs: [oldCategory],
     );
   }
-
-
+  Future<void> saveTask(TaskModel task) async {
+    final db = await database;
+    if (task.id == 0) {
+      await db.insert(
+        'tasks',
+        {
+          'task': task.task,
+          'date': task.date,
+          'selectedItem': task.selectedItem,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    } else {
+      await db.update(
+        'tasks',
+        task.toMap(),
+        where: "id = ?",
+        whereArgs: [task.id],
+      );
+    }
+  }
 }
 class TaskModel {
   final int id;

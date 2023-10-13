@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todoappdemo/Presentation/Screens/homescreen.dart';
+
+
+import 'homescreen.dart';
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
